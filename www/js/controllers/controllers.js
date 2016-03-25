@@ -1,22 +1,25 @@
-angular.module('starter.controllers', [])
+'use strict';
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+angular.module('todoApp.controllers', [])
 
-  /* #Modal Stuff */
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicSideMenuDelegate, FolderSrvc) {
 
+  /*************** #Modal Stuff ***************/
+
+  /* Add Folder Modal */ 
   $ionicModal.fromTemplateUrl('add-folder-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
-    $scope.modal = modal;
+    $scope.addFolderModal = modal;
   });
 
   $scope.openAddFolderModal = function() {
-    $scope.modal.show();
+    $scope.addFolderModal.show();
   };
 
   $scope.closeAddFolderModal = function() {
-    $scope.modal.hide();
+    $scope.addFolderModal.hide();
   };
 
   //Cleanup the modal when we're done with it!
@@ -24,29 +27,85 @@ angular.module('starter.controllers', [])
     $scope.modal.remove();
   });  
 
+  /* Edit Folder Modal */
+
+  $ionicModal.fromTemplateUrl('edit-folder-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.editFolderModal = modal;
+  });
+
+  $scope.openEditFolderModal = function() {
+    $scope.editFolderModal.show();
+  };
+
+  $scope.closeEditFolderModal = function() {
+    $scope.editFolderModal.hide();
+  };
+
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  }); 
+
   /* End of Modal */
 
 
-  // Dummy folders  
-  $scope.folders = [
-    {title: "Work"},  
-    {title: "School"},  
-    {title: "Tournament"},  
-  ]
+  /*************** #Folder Related Data ***************/
 
-  // $scope.folder = [];
+  $scope.folders = FolderSrvc.getAll();
+  $scope.activeFolder = [] 
+  $scope.currentlyEditingFolder = 0;
+  $scope.selectedFolder = 0;
 
-  /* #Folder Functions */
+  $scope.foldersCanSwipe = true
+  $scope.shouldShowDelete = false;
+
+  /*************** #Folder Functions ***************/
+
+  $scope.toggleDeleteFolder = function(){
+    $scope.shouldShowDelete = $scope.shouldShowDelete ? false : true;
+  }
 
   $scope.createFolder = function(folder){
     var folderToAdd = angular.copy(folder);
     $scope.folders.push(folderToAdd);
     folder.title = "";
+    FolderSrvc.save($scope.folders);
+    $scope.closeAddFolderModal();
+  }  
+
+  $scope.selectFolder = function(index){
+    $scope.activeFolder = $scope.folders[index];
+    $ionicSideMenuDelegate.toggleLeft(false);
   }
 
+  $scope.deleteFolder = function(index){
+    $scope.folders.splice(index, 1)
+    FolderSrvc.save($scope.folders);
+  }
 
+  $scope.editFolder = function($event, index){
+    //Stop the default behavior of the parent element
+    $event.stopPropagation();   
 
-})
+    $scope.selectedFolder = index;
+    $scope.folderToEdit = angular.copy($scope.folders[index]);
 
-.controller('PlaylistCtrl', function($scope, $ionicModal, $timeout) {
+    //Open the edit folder modal
+    $scope.openEditFolderModal(index);
+  }
+
+  $scope.updateFolder = function(newTitle){
+    $scope.folders[$scope.selectedFolder].title = newTitle;
+    FolderSrvc.save($scope.folders);
+    $scope.closeEditFolderModal();
+  }
+
+  /* End Of Folder Functions */
+
+  /*************** #Lists Related Data ***************/
+  
+
 })
