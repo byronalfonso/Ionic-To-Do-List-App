@@ -54,6 +54,17 @@ angular.module('todoApp', ['ionic', 'todoApp.controllers', 'todoApp.services'])
     cache: false
   })
 
+  .state('app.tasks', {
+    url: '/tasks/:listId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/tasks.html',
+        controller: 'TaskCtrl',       
+      }
+    },
+    cache: false
+  })
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/welcome');
 });

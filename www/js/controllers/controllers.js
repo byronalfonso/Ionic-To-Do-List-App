@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('todoApp.controllers', ['todoApp.list-controller'])
+angular.module('todoApp.controllers', ['todoApp.list-controller', 'todoApp.task-controller'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicHistory, $state, $ionicSideMenuDelegate, FolderSrvc) {
 
@@ -78,12 +78,13 @@ angular.module('todoApp.controllers', ['todoApp.list-controller'])
     $scope.closeAddFolderModal();
   }  
 
-  $scope.selectFolder = function(index){
-    $scope.activeFolder = $scope.folders[index];
-    // $ionicSideMenuDelegate.toggleLeft(false);
-    FolderSrvc.setLastActiveFolder(index);
-    $scope.listViewActive = true;
-  }
+  // $scope.selectFolder = function(index){
+  //   alert(index);
+  //   // $scope.activeFolder = $scope.folders[index];
+  //   // $ionicSideMenuDelegate.toggleLeft(false);
+  //   FolderSrvc.setLastActiveFolder(index);
+  //   $scope.listViewActive = true;
+  // }
 
   $scope.deleteFolder = function(index){
     $scope.folders.splice(index, 1)

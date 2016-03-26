@@ -1,0 +1,59 @@
+<ion-view class="tasks-page">
+	
+	<ion-header-bar class="bar-dark">
+		<button class="button button-icon" ng-click="goBack()">
+			<i class="icon ion-ios-arrow-back"></i>
+		</button>
+
+		<h1 class="title">{{activeList.title}}</h1>
+		<!-- New Task button-->
+		<button class="button button-icon" ng-click="newTask()">
+			<i class="icon ion-compose"></i>
+		</button>
+	</ion-header-bar>
+
+  <ion-content>
+    <ion-list can-swipe="tasksCanSwipe">
+      <ion-item 
+        ng-repeat="task in activeList.tasks" 
+        ng-click="selectFolder($index)" 
+        class="item item-icon-right">
+
+      {{task.title}}
+      
+      <ion-option-button class="button ion-edit" ng-click="editTask($index)">       
+      </ion-option-button>
+
+      <ion-option-button class="button button-assertive ion-android-remove-circle" ng-click="deleteTask($index)">
+      </ion-option-button>
+
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+</ion-view>
+
+<!-- Modal for adding new task -->
+
+<script id="add-task-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">Add Task</h1>
+      <button class="button" ng-click="closeNewTaskModal()">
+        Done
+      </button>
+    </ion-header-bar>
+    <ion-content>
+      <form ng-submit="createTask(task)">
+        <div class="list">
+          <label class="item item-input">
+            <input type="text" placeholder="Enter your task here" ng-model="task.title">
+          </label>
+        </div>
+        <div class="padding">
+          <button type="submit" class="button button-block button-positive">Create a Task</button>
+        </div>
+      </form>
+    </ion-content>
+  </ion-modal-view>
+</script>

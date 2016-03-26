@@ -6,6 +6,7 @@ angular.module('todoApp.services', ['todoApp.helper-services'])
 
 	var FOLDER_KEY = 'folders'
 	var LAST_ACTIVE_FOLDER_KEY = 'active_folder'
+	var LAST_ACTIVE_LIST_KEY = 'active_list'
 	
 	var getAll = function(){		
 		var folders = window.localStorage[FOLDER_KEY];
@@ -35,11 +36,27 @@ angular.module('todoApp.services', ['todoApp.helper-services'])
 		return [];		
 	}
 
+	var setLastActiveList = function(index){
+		window.localStorage[LAST_ACTIVE_LIST_KEY] = index;
+	}
+
+	var getLastActiveList = function(index){
+		var activeList = window.localStorage[LAST_ACTIVE_LIST_KEY];
+		
+		if(activeList) {
+			return angular.fromJson(activeList);
+		}
+
+		return [];		
+	}
+
 	return {
 		getAll: getAll,
 		save: save,
 		setLastActiveFolder: setLastActiveFolder,
 		getLastActiveFolder: getLastActiveFolder,
+		setLastActiveList: setLastActiveList,
+		getLastActiveList: getLastActiveList,
 	};
 });
 

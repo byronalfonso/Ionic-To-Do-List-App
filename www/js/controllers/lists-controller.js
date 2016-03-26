@@ -2,10 +2,11 @@
 
 angular.module('todoApp.list-controller', [])
 
-.controller('ListCtrl', function($scope, $ionicModal, $ionicSideMenuDelegate, FolderSrvc, HelperSrvc) {
+.controller('ListCtrl', function($scope, $ionicModal, $stateParams, $ionicSideMenuDelegate, FolderSrvc, HelperSrvc) {
 
-  // Initialize active folder
-  $scope.activeFolder = $scope.folders[FolderSrvc.getLastActiveFolder()];
+  // Save active folder id to localstorage and Initialize active folder
+  FolderSrvc.setLastActiveFolder($stateParams.folderId);
+  $scope.activeFolder = $scope.folders[$stateParams.folderId];
 
   /*************** #Modal Stuff ***************/
   /* Add List Modal */
@@ -30,6 +31,8 @@ angular.module('todoApp.list-controller', [])
     $scope.newListModal.remove();
   });
 
+  /* Edit List Modal */
+
   $ionicModal.fromTemplateUrl('edit-list-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -50,13 +53,36 @@ angular.module('todoApp.list-controller', [])
     $scope.editListModal.remove();
   });
 
+  /* Add Tasks Modal */
+
+  $ionicModal.fromTemplateUrl('add-tasks-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.addTasksModal = modal;
+  });
+
+  $scope.openAddTasksModal = function() {
+    $scope.addTasksModal.show();
+  };
+
+  $scope.closeAddTasksModal = function() {
+    $scope.addTasksModal.hide();
+  };
+
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.addTasksModal.remove();
+  });
+
   /* End of Modal */
 
   /*************** #Lists Data ***************/
-  $scope.foldersCanSwipe = true;
+  $scope.listsCanSwipe = true;
   $scope.selectedList = 0;
 
   /*************** #Lists Functions ***************/
+
   $scope.newList = function(){
     $scope.openNewListModal();
   }
@@ -93,6 +119,5 @@ angular.module('todoApp.list-controller', [])
     $scope.activeFolder.lists.splice(index, 1);
     FolderSrvc.save($scope.folders);
   }
-
 
 })
