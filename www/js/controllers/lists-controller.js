@@ -8,6 +8,10 @@ angular.module('todoApp.list-controller', [])
   FolderSrvc.setLastActiveFolder($stateParams.folderId);
   $scope.activeFolder = $scope.folders[$stateParams.folderId];
 
+  console.log('folders');
+  console.log($scope.folders);
+
+
   /*************** #Modal Stuff ***************/
   /* Add List Modal */
 

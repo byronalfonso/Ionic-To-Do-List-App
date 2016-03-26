@@ -6,16 +6,15 @@ angular.module('todoApp.task-controller', [])
 
   // Save active list id on local storage and initialize active list
   FolderSrvc.setLastActiveList($stateParams.listId);
-  $scope.activeList = $scope.folders[FolderSrvc.getLastActiveFolder()].lists[$stateParams.listId];
-
-  console.log($scope.activeList);
+  $scope.activeList = $scope.folders[FolderSrvc.getLastActiveFolder()].lists[$stateParams.listId];  
 
   $scope.goBack = function(){
     $ionicHistory.goBack();
   }
 
    /*************** #Modal Stuff ***************/
-  /* Add List Modal */
+
+  /* Add Task Modal */
 
   $ionicModal.fromTemplateUrl('add-task-modal.html', {
     scope: $scope,
@@ -38,6 +37,30 @@ angular.module('todoApp.task-controller', [])
   });
   
   /* Add Tasks Modal */
+
+  /* Edit Task Modal */
+
+  $ionicModal.fromTemplateUrl('edit-task-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.editTaskModal = modal;
+  });
+
+  $scope.openEditTaskModal = function() {
+    $scope.editTaskModal.show();
+  };
+
+  $scope.closeEditTaskModal = function() {
+    $scope.editTaskModal.hide();
+  };
+
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.editTaskModal.remove();
+  });
+  
+  /* Edit Task Modal */
 
   /*************** #Tasks Data ***************/
   $scope.tasksCanSwipe = true;
@@ -67,6 +90,18 @@ angular.module('todoApp.task-controller', [])
     task.title = '';
     $scope.closeNewTaskModal();
     console.log($scope.folders);
+  }
+
+  $scope.editTask = function(index){
+    $scope.openEditTaskModal();
+    $scope.selectedTask = index;
+    $scope.taskToEdit = angular.copy($scope.activeList.tasks[index]);
+  }
+
+  $scope.updateTask = function(newTask){
+    $scope.activeList.tasks[$scope.selectedTask] = newTask;
+    FolderSrvc.save($scope.folders);
+    $scope.closeEditTaskModal();
   }
 
   $scope.deleteTask = function(index){

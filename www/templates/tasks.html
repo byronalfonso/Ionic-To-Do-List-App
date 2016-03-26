@@ -57,3 +57,28 @@
     </ion-content>
   </ion-modal-view>
 </script>
+
+<!-- Modal for editting new task -->
+
+<script id="edit-task-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">Edit Task</h1>
+      <button class="button" ng-click="closeEditTaskModal()">
+        Cancel
+      </button>
+    </ion-header-bar>
+    <ion-content>
+      <form ng-submit="updateTask(taskToEdit)">
+        <div class="list">
+          <label class="item item-input">
+            <input type="text" placeholder="Enter the name of your list" ng-model="taskToEdit.title">
+          </label>
+        </div>
+        <div class="padding">
+          <button type="submit" class="button button-block button-positive">Save Changes</button>
+        </div>
+      </form>
+    </ion-content>
+  </ion-modal-view>
+</script>
