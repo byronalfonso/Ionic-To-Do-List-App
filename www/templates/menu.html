@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="false" class="todo-page">
+<ion-side-menus enable-menu-with-back-views="false" class="main-sidebar">
   
   <!-- SIDE MENU -->
 
@@ -12,65 +12,70 @@
     </ion-header-bar>
 
     <ion-content>    
-      <!-- <ion-list>
-        <ion-item menu-close ng-repeat="folder in folders" ng-click="selectFolder($index)">
-          {{folder.title}}
-        </ion-item>
-      </ion-list> -->
-      
+            
       <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="foldersCanSwipe">
-        <ion-item ng-repeat="folder in folders" ng-click="selectFolder($index)" class="item item-icon-right">            
+        <ion-item ng-repeat="folder in folders" ng-click="selectFolder($index)" class="item item-icon-right" menu-close href="#/app/lists/{{$index}}">            
                    
-          {{folder.title}}          
-          <i class="icon ion-edit" ng-click="editFolder($event, $index)"></i>
+          {{folder.title}}
+          <i class="icon ion-edit edit-folder" ng-click="editFolder($event, $index)"></i>
 
           <ion-delete-button class="ion-minus-circled"
             ng-click="deleteFolder($index)">
           </ion-delete-button>
 
         </ion-item>
+
+        <ion-item class="item-icon-right home-link" menu-close href="#/app/welcome">
+          <button class="button button-full button-positive" style="margin:0">
+            Go back to home page
+          </button>
+          <i class="icon ion-home"></i>
+        </ion-item>
+
       </ion-list>
-
-
-
-
-
 
     </ion-content>
   </ion-side-menu>
 
   <!-- SIDE MENU CONTENT-->
-  <ion-side-menu-content>
+ <!--  <ion-side-menu-content>
 
   <ion-header-bar class="bar-dark">
     <button class="button button-icon" menu-toggle="left">
       <i class="icon ion-navicon"></i>
     </button>
-
-    <h1 class="title" ng-if="!activeFolder.title">TO DO APP</h1> 
-    <h1 class="title" ng-if="activeFolder.title">{{activeFolder.title}}</h1>
-    
-
-    <!-- New Task button-->
-    <button class="button button-icon" ng-click="newTask()">
+    <h1 class="title" ng-if="activeFolder.title">{{activeFolder.title}}</h1>    
+    <button class="button button-icon" ng-click="newList()">
       <i class="icon ion-compose"></i>
     </button>
   </ion-header-bar>
 
-  <ion-content scroll="false">
+  <ion-nav-view name="menuContent">
+    <ion-content scroll="false">
+      <ion-list ng-if="activeFolder.tasks">
+        <ion-item ng-repeat="task in activeFolder.tasks">
+          {{task.title}}
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-nav-view> 
 
-    <ion-list ng-if="activeFolder.tasks">
-      <ion-item ng-repeat="task in activeFolder.tasks">
-        {{task.title}}
-      </ion-item>
-    </ion-list>
-    
-    <!-- <h4 ng-if="!activeFolder.tasks" style="text-align:center">
-      Click on the menu to add a folder   
-    </h4> -->
+  </ion-side-menu-content>
+-->
 
-  </ion-content>
+  <ion-side-menu-content>
+  
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
 
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
 </ion-side-menus>
@@ -88,7 +93,7 @@
       <form ng-submit="createFolder(folder)">
         <div class="list">
           <label class="item item-input">
-            <input type="text" placeholder="Enter the title of your folder" ng-model="folder.title">
+            <input type="text" placeholder="Enter the name of your folder" ng-model="folder.title">
           </label>
         </div>
         <div class="padding">
@@ -111,11 +116,34 @@
       <form ng-submit="updateFolder(folderToEdit.title)">
         <div class="list">
           <label class="item item-input">
-            <input type="text" placeholder="Enter the title of your folder" ng-model="folderToEdit.title">
+            <input type="text" placeholder="Enter the new name of your folder" ng-model="folderToEdit.title">
           </label>
         </div>
         <div class="padding">
           <button type="submit" class="button button-block button-positive">Save Changes</button>
+        </div>
+      </form>
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+<script id="add-list-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">Add List</h1>
+      <button class="button" ng-click="closeNewListModal()">
+        Done
+      </button>
+    </ion-header-bar>
+    <ion-content>
+      <form ng-submit="createList(list)">
+        <div class="list">
+          <label class="item item-input">
+            <input type="text" placeholder="Enter the name of your list" ng-model="list.title">
+          </label>
+        </div>
+        <div class="padding">
+          <button type="submit" class="button button-block button-positive">Create a List</button>
         </div>
       </form>
     </ion-content>

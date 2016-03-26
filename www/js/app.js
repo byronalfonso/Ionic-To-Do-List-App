@@ -34,15 +34,26 @@ angular.module('todoApp', ['ionic', 'todoApp.controllers', 'todoApp.services'])
   })
 
 
-    .state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html'
-        }
+  .state('app.welcome', {
+    url: '/welcome',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/welcome.html'
       }
-    })
+    }
+  })
+
+  .state('app.lists', {
+    url: '/lists/:folderId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/lists.html',
+        controller: 'ListCtrl',        
+      }
+    },
+    cache: false
+  })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/welcome');
 });

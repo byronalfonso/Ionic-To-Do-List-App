@@ -1,13 +1,11 @@
-<ion-view view-title="Playlists">
-  <ion-content>
-	
-	List Page
-
-
-    <!-- <ion-list>
-      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-        {{playlist.title}}
-      </ion-item>
-    </ion-list> -->
+<ion-view view-title="Lists">
+  <ion-content>	
+	<ion-content scroll="false">
+      <ion-list ng-if="activeFolder.tasks">
+        <ion-item ng-repeat="task in activeFolder.tasks">
+          {{task.title}}
+        </ion-item>
+      </ion-list>
+    </ion-content>
   </ion-content>
 </ion-view>

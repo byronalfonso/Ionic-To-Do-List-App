@@ -1,1 +1,14 @@
 /* Empty. Add your own CSS if you like */
+
+
+.main-sidebar .add-folder, .main-sidebar .add-folder, .main-sidebar .edit-folder{
+	font-size: 20px;
+}
+
+.main-sidebar .home-link{
+	color:#fff;
+}
+
+.main-sidebar .home-link a{
+	padding:0 !important;
+}
