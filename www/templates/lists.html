@@ -20,14 +20,15 @@
       </ion-list> -->
 
 
-	<ion-list can-swipe="listsCanSwipe">
+	<ion-list can-swipe="listsCanSwipe" class="list-of-lists">
 	    <ion-item 
-	    	ng-repeat="list in activeFolder.lists" 
-	    	ng-click="selectFolder($index)" 
+	    	ng-repeat="list in activeFolder.lists"
 	    	class="item item-icon-right">
 
-			<h4>{{list.title}}</h4>
-			<a href="#/app/tasks/{{$index}}"><i class="icon ion-plus edit-folder"></i></a>
+			<h4 class="list-title">{{list.title}}</h4>
+			<div class="list-tasks completed" ng-repeat="task in list.tasks">{{task.title}}</div>
+
+			<a href="#/app/tasks/{{$index}}"><i class="icon ion-plus edit-list"></i></a>
 			
 			<ion-option-button class="button ion-edit" ng-click="editList($index)">				
 			</ion-option-button>

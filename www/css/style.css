@@ -15,3 +15,32 @@
 .main-sidebar .home-link a{
 	padding:0 !important;
 }
+
+.list-of-lists{
+	
+}
+
+.list-of-lists .list-title{
+	font-size: 16px;
+	height:35px;
+	line-height:50px;
+}
+
+.list-of-lists .list-tasks{
+	font-size: 14px;
+	padding-left: 5px;	
+	height: 30px;
+	line-height: 30px;
+}
+
+.list-of-lists .list-tasks.completed{
+	color:#ddd;
+	text-decoration: line-through;
+}
+
+.list-of-lists .edit-list{
+	font-size: 20px;
+	align-items: flex-start;
+	padding-top: 35px;
+}
+
