@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('todoApp.services', [])
+angular.module('todoApp.services', ['todoApp.helper-services'])
 
 .factory('FolderSrvc', function($q) {
 

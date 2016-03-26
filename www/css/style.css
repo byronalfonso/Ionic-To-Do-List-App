@@ -1,7 +1,10 @@
 /* Empty. Add your own CSS if you like */
 
+.main-sidebar .add-folder:before, .main-sidebar .delete-folder:before{
+	font-size: 20px !important;
+}
 
-.main-sidebar .add-folder, .main-sidebar .add-folder, .main-sidebar .edit-folder{
+.main-sidebar .edit-folder{
 	font-size: 20px;
 }
 

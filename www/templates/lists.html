@@ -1,11 +1,97 @@
-<ion-view view-title="Lists">
-  <ion-content>	
-	<ion-content scroll="false">
-      <ion-list ng-if="activeFolder.tasks">
-        <ion-item ng-repeat="task in activeFolder.tasks">
-          {{task.title}}
+<ion-view>
+	
+	<ion-header-bar class="bar-dark">
+		<button class="button button-icon" menu-toggle="left">
+			<i class="icon ion-navicon"></i>
+		</button>
+
+		<h1 class="title">{{activeFolder.title}}</h1>
+		<!-- New Task button-->
+		<button class="button button-icon" ng-click="newList()">
+			<i class="icon ion-compose"></i>
+		</button>
+	</ion-header-bar>
+
+	<ion-content>
+      <!-- <ion-list>
+        <ion-item ng-repeat="list in activeFolder.lists">
+          {{list.title}}
+        </ion-item>
+      </ion-list> -->
+
+
+	<ion-list can-swipe="foldersCanSwipe">
+        <ion-item 
+        	ng-repeat="list in activeFolder.lists" 
+        	ng-click="selectFolder($index)" 
+        	class="item item-icon-right" 
+        	href="#/app/lists/{{$index}}"
+    	>
+
+			{{list.title}}
+          <!-- <i class="icon ion-edit edit-folder" ng-click="editFolder($event, $index)"></i> -->
+
+			<ion-option-button class="button-positive" ng-click="editList($index)">
+				Edit
+			</ion-option-button>
+			<ion-option-button class="button-assertive" ng-click="deleteList($index)">
+				Delete
+			</ion-option-button>
+
         </ion-item>
       </ion-list>
+	
+
+
+
     </ion-content>
-  </ion-content>
 </ion-view>
+
+<!-- Modal for adding new list -->
+
+<script id="add-list-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">Add List</h1>
+      <button class="button" ng-click="closeNewListModal()">
+        Done
+      </button>
+    </ion-header-bar>
+    <ion-content>
+      <form ng-submit="createList(list)">
+        <div class="list">
+          <label class="item item-input">
+            <input type="text" placeholder="Enter the name of your list" ng-model="list.title">
+          </label>
+        </div>
+        <div class="padding">
+          <button type="submit" class="button button-block button-positive">Create a List</button>
+        </div>
+      </form>
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+<!-- Modal for editing list -->
+<script id="edit-list-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">Edit List</h1>
+      <button class="button" ng-click="closeEditListModal()">
+        Done
+      </button>
+    </ion-header-bar>
+    <ion-content>
+      <form ng-submit="updateList(listToEdit)">
+        <div class="list">
+          <label class="item item-input">
+            <input type="text" placeholder="Enter the name of your list" ng-model="listToEdit.title">
+          </label>
+        </div>
+        <div class="padding">
+          <button type="submit" class="button button-block button-positive">Save Changes</button>
+        </div>
+      </form>
+    </ion-content>
+  </ion-modal-view>
+</script>

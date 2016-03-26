@@ -49,7 +49,7 @@ angular.module('todoApp.controllers', ['todoApp.list-controller'])
   $scope.$on('$destroy', function() {
     $scope.editFolderModal.remove();
   });
-  
+
   /* End of Modal */
 
 
@@ -59,6 +59,7 @@ angular.module('todoApp.controllers', ['todoApp.list-controller'])
   $scope.activeFolder = [] 
   $scope.currentlyEditingFolder = 0;
   $scope.selectedFolder = 0;
+  $scope.listViewActive = false;
 
   $scope.foldersCanSwipe = true
   $scope.shouldShowDelete = false;
@@ -81,6 +82,7 @@ angular.module('todoApp.controllers', ['todoApp.list-controller'])
     $scope.activeFolder = $scope.folders[index];
     // $ionicSideMenuDelegate.toggleLeft(false);
     FolderSrvc.setLastActiveFolder(index);
+    $scope.listViewActive = true;
   }
 
   $scope.deleteFolder = function(index){
@@ -90,13 +92,14 @@ angular.module('todoApp.controllers', ['todoApp.list-controller'])
 
   $scope.editFolder = function($event, index){
     //Stop the default behavior of the parent element
-    $event.stopPropagation();   
+    $event.stopPropagation();
 
+    //Set selected folder index and set folder to edit.
     $scope.selectedFolder = index;
     $scope.folderToEdit = angular.copy($scope.folders[index]);
 
     //Open the edit folder modal
-    $scope.openEditFolderModal(index);
+    $scope.openEditFolderModal();
   }
 
   $scope.updateFolder = function(newTitle){
@@ -106,20 +109,4 @@ angular.module('todoApp.controllers', ['todoApp.list-controller'])
   }
 
   /* End Of Folder Functions */
-
-  /*************** #Lists Related Data ***************/
-
-  $scope.folders = FolderSrvc.getAll();
-  $scope.activeFolder = [] 
-  $scope.currentlyEditingFolder = 0;
-  $scope.selectedFolder = 0;
-
-  $scope.foldersCanSwipe = true
-  $scope.shouldShowDelete = false;
-
-  /*************** #Lists Functions Data ***************/
-
-  $scope.newList = function(){
-    $scope.openNewListModal();
-  }
 })
