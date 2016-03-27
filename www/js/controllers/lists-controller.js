@@ -2,11 +2,13 @@
 
 angular.module('todoApp.list-controller', [])
 
-.controller('ListCtrl', function($scope, $ionicModal, $stateParams, $ionicSideMenuDelegate, FolderSrvc, HelperSrvc) {
+.controller('ListCtrl', function($scope, $ionicModal, $stateParams, $ionicListDelegate, $ionicSideMenuDelegate, FolderSrvc, HelperSrvc) {
 
   // Save active folder id to localstorage and Initialize active folder
   FolderSrvc.setLastActiveFolder($stateParams.folderId);
   $scope.activeFolder = $scope.folders[$stateParams.folderId];
+
+  console.log($scope.folders);
   
   /*************** #Modal Stuff ***************/
   /* Add List Modal */
@@ -46,33 +48,12 @@ angular.module('todoApp.list-controller', [])
 
   $scope.closeEditListModal = function() {
     $scope.editListModal.hide();
+    $ionicListDelegate.closeOptionButtons();
   };
 
   //Cleanup the modal when we're done with it!
   $scope.$on('$destroy', function() {
     $scope.editListModal.remove();
-  });
-
-  /* Add Tasks Modal */
-
-  $ionicModal.fromTemplateUrl('add-tasks-modal.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.addTasksModal = modal;
-  });
-
-  $scope.openAddTasksModal = function() {
-    $scope.addTasksModal.show();
-  };
-
-  $scope.closeAddTasksModal = function() {
-    $scope.addTasksModal.hide();
-  };
-
-  //Cleanup the modal when we're done with it!
-  $scope.$on('$destroy', function() {
-    $scope.addTasksModal.remove();
   });
 
   /* End of Modal */
@@ -112,6 +93,7 @@ angular.module('todoApp.list-controller', [])
   $scope.updateList = function(newList){
     $scope.activeFolder.lists[$scope.selectedList] = newList;
     FolderSrvc.save($scope.folders);
+    $ionicListDelegate.closeOptionButtons();
     $scope.closeEditListModal();
   }
 
@@ -119,5 +101,18 @@ angular.module('todoApp.list-controller', [])
     $scope.activeFolder.lists.splice(index, 1);
     FolderSrvc.save($scope.folders);
   }
+
+  $scope.toggleCompleteTask = function(listIndex, taskIndex){
+    var task = $scope.activeFolder.lists[listIndex].tasks[taskIndex];
+    task.isCompleted = task.isCompleted ? false : true;
+    FolderSrvc.save($scope.folders);
+  }
+
+  $scope.deleteTask = function($event, newList, index){
+    $event.stopPropagation();
+    // $scope.activeFolder.lists[listIndex].tasks.splice(taskIndex, 1);
+    newList.tasks.splice(index, 1);
+  }
+
 
 })

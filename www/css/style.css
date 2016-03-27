@@ -16,6 +16,17 @@
 	padding:0 !important;
 }
 
+/* Welcome Page */
+
+.welcome-container{
+	padding:10px 20px;
+}
+
+.welcome-container .section{
+	margin-bottom: 20px;
+}
+
+/* List Page */
 .list-of-lists{
 	
 }
@@ -23,14 +34,12 @@
 .list-of-lists .list-title{
 	font-size: 16px;
 	height:35px;
-	line-height:50px;
+	line-height:35px;
 }
 
 .list-of-lists .list-tasks{
 	font-size: 14px;
-	padding-left: 5px;	
-	height: 30px;
-	line-height: 30px;
+	padding-left: 5px;
 }
 
 .list-of-lists .list-tasks.completed{
@@ -41,6 +50,34 @@
 .list-of-lists .edit-list{
 	font-size: 20px;
 	align-items: flex-start;
-	padding-top: 35px;
+	padding-top: 24px;
+}
+
+.list-of-lists .task-container{	
+}
+
+.task-container .row, .task-container .row .col{
+	padding: 0;
+}
+
+.task-container .task-title{
+	position: relative;
+}
+
+.task-container .task-delete{
+	width:35px;
+	position: absolute;
+	top:0;
+	right: 0;
+	z-index: 10;
+	margin-top: -1px;
+}
+
+.task-container .task-delete button{
+    width: 100%;
+    background: #555;
+    color: #fff;		
+	border-radius: 0;
+	border:2px solid #fff;
 }
 

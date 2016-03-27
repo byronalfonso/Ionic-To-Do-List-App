@@ -72,12 +72,16 @@ angular.module('todoApp.task-controller', [])
   }
 
   $scope.createTask = function(task){
+    /*
+      Add isCompleted property to each and every new task create and set it to default.
+      This wil be used later for setting a task to completed.
+    */
+
+    task['isCompleted'] = false;
+
     //check if active folder has an empty list, if true then create empty array then push list else simply push list
     var taskToAdd = angular.copy(task);
     
-    // alert('Create task!');
-    // console.log(taskToAdd);
-
     if (HelperSrvc.isObjEmpty($scope.activeList.tasks)) {
       $scope.activeList['tasks'] = [];
       $scope.activeList.tasks.push(taskToAdd);
@@ -88,8 +92,7 @@ angular.module('todoApp.task-controller', [])
     FolderSrvc.save($scope.folders);
 
     task.title = '';
-    $scope.closeNewTaskModal();
-    console.log($scope.folders);
+    $scope.closeNewTaskModal();    
   }
 
   $scope.editTask = function(index){

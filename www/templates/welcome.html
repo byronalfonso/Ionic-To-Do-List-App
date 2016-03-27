@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view class="welcome-page">
 
 	<ion-header-bar class="bar-dark">
 		<button class="button button-icon" menu-toggle="left">
@@ -8,24 +8,26 @@
 		<h1 class="title">To Do App</h1>
 	</ion-header-bar>
 
-  <ion-content>
-	<h1>Welcome!</h1>
-	<p>To Do App is a simple program that let's you add list of tasks and categorized them by folder.</p>
-	<p>
-		Here's the flow: </br>
-		<ul>
-			<li>Open the sidebar and add a folder.</li>
-			<li>Click the folder and add a list.</li>
-			<li>Click the list and add tasks to it.</li>
-		</ul>
-	</p>
-	<p>
-		Features: </br>
-		<ul>
-			<li>Adding, Editing, Deleting of folder/categories.</li>
-			<li>Adding, Editing, Deleting of lists.</li>
-			<li>Adding, Editing, Deleting of addtasks.</li>
-		</ul>
-	</p>
-  </ion-content>
+	<ion-content class="welcome-container">
+		<h1 class="welcome-title">Welcome!</h1>
+		<p>To Do App is a simple program that let's you add list of tasks and categorized them by folder.</p>
+
+		<div class="section flow-container">
+			Here's the flow: </br>
+			<ul>
+				<li>Open the sidebar and add a folder.</li>
+				<li>Click the folder and add a list.</li>
+				<li>Click the list and add tasks to it.</li>
+			</ul>
+		</div>
+
+		<div class="section features-container">
+			Features: </br>
+			<ul>
+				<li>Adding, Editing, Deleting of folder/categories.</li>
+				<li>Adding, Editing, Deleting of lists.</li>
+				<li>Adding, Editing, Deleting of addtasks.</li>
+			</ul>
+		</div>
+	</ion-content>
 </ion-view>

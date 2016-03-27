@@ -26,11 +26,26 @@
 	    	class="item item-icon-right">
 
 			<h4 class="list-title">{{list.title}}</h4>
-			<div class="list-tasks completed" ng-repeat="task in list.tasks">{{task.title}}</div>
+      
+      <div class="task-container">
+        <div class="list-tasks" 
+          ng-class="{completed: task.isCompleted}" 
+          ng-repeat="task in list.tasks" 
+          ng-click="toggleCompleteTask($parent.$index, $index)">
 
-			<a href="#/app/tasks/{{$index}}"><i class="icon ion-plus edit-list"></i></a>
+          <div class="row">
+            <div class="col task-title">{{task.title}}</div>
+            <!-- <div class="col task-delete">
+              <button class="button button-icon ion-ios-close-outline" ng-click="deleteTask($event, $parent.$index, $index)"></button>
+            </div> -->                    
+          </div>
+          
+        </div>
+      </div>
+
+			<a href="#/app/tasks/{{$index}}"><i class="icon ion-ios-plus-empty edit-list"></i></a>
 			
-			<ion-option-button class="button ion-edit" ng-click="editList($index)">				
+			<ion-option-button class="button ion-edit" ng-click="editList($index)">
 			</ion-option-button>
 
 			<ion-option-button class="button button-assertive ion-android-remove-circle" ng-click="deleteList($index)">
@@ -49,15 +64,15 @@
     <ion-header-bar>
       <h1 class="title">Add List</h1>
       <button class="button" ng-click="closeNewListModal()">
-        Done
+        Cancel
       </button>
     </ion-header-bar>
     <ion-content>
       <form ng-submit="createList(list)">
         <div class="list">
-          <label class="item item-input">
+          <ion-input class="item item-input">            
             <input type="text" placeholder="Enter the name of your list" ng-model="list.title">
-          </label>
+          </ion-input>
         </div>
         <div class="padding">
           <button type="submit" class="button button-block button-positive">Create a List</button>
@@ -78,35 +93,38 @@
     </ion-header-bar>
     <ion-content>
       <form ng-submit="updateList(listToEdit)">
-        <div class="list">
-          <label class="item item-input">
-            <input type="text" placeholder="Enter the name of your list" ng-model="listToEdit.title">
-          </label>
-        </div>
-        <div class="padding">
-          <button type="submit" class="button button-block button-positive">Save Changes</button>
-        </div>
-      </form>
-    </ion-content>
-  </ion-modal-view>
-</script>
 
-<!-- Modal for adding tasks -->
-<script id="add-tasks-modal.html" type="text/ng-template">
-  <ion-modal-view>
-    <ion-header-bar>
-      <h1 class="title">Add Tasks</h1>
-      <button class="button" ng-click="closeAddTasksModal()">
-        Cancel
-      </button>
-    </ion-header-bar>
-    <ion-content>
-      <form ng-submit="updateList(listToEdit)">
+
         <div class="list">
-          <label class="item item-input">
+
+          <ion-input class="item item-input">            
             <input type="text" placeholder="Enter the name of your list" ng-model="listToEdit.title">
-          </label>
+          </ion-input>
+
+          <div class="task-container">
+            <div class="list-tasks" 
+            ng-class="{completed: task.isCompleted}" 
+            ng-repeat="task in listToEdit.tasks" 
+            ng-click="toggleCompleteTask($parent.$index, $index)">
+
+            <div class="row">
+              <div class="col task-title">
+                <ion-input class="item item-input">            
+                  <input type="text" placeholder="Enter the name of your list" ng-model="task.title">
+                </ion-input>
+                <div class="task-delete">
+                  <button class="button button-icon ion-ios-close-outline" ng-click="deleteTask($event, listToEdit, $index)"></button>
+                </div> 
+              </div>                                  
+            </div>
+
+            </div>
+          </div>
+
+
         </div>
+
+
         <div class="padding">
           <button type="submit" class="button button-block button-positive">Save Changes</button>
         </div>

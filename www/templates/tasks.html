@@ -45,10 +45,10 @@
     </ion-header-bar>
     <ion-content>
       <form ng-submit="createTask(task)">
-        <div class="list">
-          <label class="item item-input">
+        <div class="list">          
+          <ion-input class="item item-input">            
             <input type="text" placeholder="Enter your task here" ng-model="task.title">
-          </label>
+          </ion-input>          
         </div>
         <div class="padding">
           <button type="submit" class="button button-block button-positive">Create a Task</button>
@@ -71,9 +71,9 @@
     <ion-content>
       <form ng-submit="updateTask(taskToEdit)">
         <div class="list">
-          <label class="item item-input">
+          <ion-input class="item item-input">            
             <input type="text" placeholder="Enter the name of your list" ng-model="taskToEdit.title">
-          </label>
+          </ion-input>
         </div>
         <div class="padding">
           <button type="submit" class="button button-block button-positive">Save Changes</button>
