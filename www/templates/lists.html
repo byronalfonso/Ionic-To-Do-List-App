@@ -43,12 +43,12 @@
         </div>
       </div>
 
-			<a href="#/app/tasks/{{$index}}"><i class="icon ion-ios-plus-empty edit-list"></i></a>
+			<a href="#/app/tasks/{{$index}}"><i class="icon ion-plus add-task-btn"></i></a>
 			
 			<ion-option-button class="button ion-edit" ng-click="editList($index)">
 			</ion-option-button>
 
-			<ion-option-button class="button button-assertive ion-android-remove-circle" ng-click="deleteList($index)">
+			<ion-option-button class="button button-assertive ion-android-remove-circle delete-btn" ng-click="deleteList($index)">
 			</ion-option-button>
 
 	    </ion-item>
@@ -75,7 +75,7 @@
           </ion-input>
         </div>
         <div class="padding">
-          <button type="submit" class="button button-block button-positive">Create a List</button>
+          <button type="submit" class="button button-block button-positive app-btn">Create a List</button>
         </div>
       </form>
     </ion-content>
@@ -126,7 +126,7 @@
 
 
         <div class="padding">
-          <button type="submit" class="button button-block button-positive">Save Changes</button>
+          <button type="submit" class="button button-block button-positive app-btn">Save Changes</button>
         </div>
       </form>
     </ion-content>

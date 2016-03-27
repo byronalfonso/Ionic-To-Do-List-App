@@ -1,4 +1,85 @@
-/* Empty. Add your own CSS if you like */
+/* Across the app */
+
+.html, .body, div, a, input{
+	font-family: 'Raleway', sans-serif;
+	color:#fff;
+}
+
+h1, h2, h3, h4, h5, h6{
+	font-family: 'Lobster', sans-serif;
+	color: #fff;
+}
+
+.item-input{
+	background: #E91E63;	
+}
+
+input::-webkit-input-placeholder {
+   color: #fff;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+   color: #fff;  
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+   color: #fff;  
+}
+
+input:-ms-input-placeholder {  
+   color: #fff;  
+}
+
+.button.app-btn{
+	background: #333;
+}
+
+.item-content{
+	background: #E91E63 !important;
+}
+
+.bar-header{
+	background: #C2185B !important;
+}
+
+.completed{
+	color:#ddd;
+	text-decoration: line-through;
+}
+
+.scroll-content{
+	background: #E91E63 !important;
+}
+
+.button-bar a{
+	border-radius: 0;
+}
+
+
+/* Left Sidebar */
+
+.menu-left .bar-header{
+	background: #555 !important;
+}
+
+.menu-left .bar-header button{
+	color:#FF4081;
+}
+
+.menu-left .scroll-content{
+	background: #555 !important;
+}
+
+.menu-left .button-bar a, .menu-left .button-bar button{
+	background: #777 !important;
+	color: #fff;
+} 
+
+
+.menu-left .item-content{
+	background: #555 !important;
+	color: #fff;
+}
 
 .main-sidebar .add-folder:before, .main-sidebar .delete-folder:before{
 	font-size: 20px !important;
@@ -6,6 +87,7 @@
 
 .main-sidebar .edit-folder{
 	font-size: 20px;
+	color:#FF4081;	
 }
 
 .main-sidebar .home-link{
@@ -17,6 +99,18 @@
 }
 
 /* Welcome Page */
+
+.welcome-page .bar-header button{
+	color:#fff;
+}
+
+.welcome-page .welcome-title, .welcome-page .welcome-statement{
+	text-align: center;
+}
+
+.welcome-page .welcome-statement{
+	margin-bottom: 35px;
+}
 
 .welcome-page .ion-navicon:hover{
 	pointer:cursor;
@@ -46,15 +140,18 @@
 	padding-left: 5px;
 }
 
-.completed{
-	color:#ddd;
-	text-decoration: line-through;
-}
-
-.list-of-lists .edit-list{
+.list-of-lists .edit-list, .list-of-lists .add-task-btn {
 	font-size: 20px;
 	align-items: flex-start;
 	padding-top: 24px;
+}
+
+.list-of-lists .add-task-btn{
+	color:#fff;
+}
+
+.button.delete-btn{
+	background: #555;
 }
 
 .list-of-lists .task-container{	
@@ -84,4 +181,3 @@
 	border-radius: 0;
 	border:2px solid #fff;
 }
-
