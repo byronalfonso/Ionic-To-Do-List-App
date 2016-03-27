@@ -25,14 +25,23 @@ CRUD - Create, Read, Update, Delete
 
 ##Usage:
 1. Open the sidemenu and add a folder
+
 http://screencast.com/t/fqwMozWMj
+
 2. Open the folder and add a list
+
 http://screencast.com/t/skxTXdnS
 http://screencast.com/t/fiz5ilWE
+
 3. Add tasks to your list.
+
 http://screencast.com/t/siF9d6zUVko
 4. To edit and delete lists and tasks, simply swipe the item you want to edit/delete toward the left of the screen and the options will show.
+
+http://screencast.com/t/9B7cCRaZ
 5. To set a task to complete, simply click on the task to toggle complete/incomplete.
+
+http://screencast.com/t/Mwb9NYz4
 
 ##App Icon and Splash Screen
 Along with the code, I have create a simple app icon and splash screen image(stored on the /resources folder). To use them, simply add a platform e.g. 'cordova platform add and' then run 'ionic resources'. Ionic will then automatically generate icons and splashscreens for all existing platforms.
