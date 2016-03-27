@@ -12,7 +12,10 @@
     </ion-header-bar>
 
     <ion-content>    
-            
+      <div class="button-bar">
+        <a href="#/app/welcome" menu-close class="button"><button class="button icon ion-home"></button></a>
+        <!-- <a class="button">Second</a> -->
+      </div>      
       <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="foldersCanSwipe">
         <ion-item ng-repeat="folder in folders" class="item item-icon-right" menu-close href="#/app/lists/{{$index}}">
                    

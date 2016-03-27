@@ -18,6 +18,10 @@
 
 /* Welcome Page */
 
+.welcome-page .ion-navicon:hover{
+	pointer:cursor;
+}
+
 .welcome-container{
 	padding:10px 20px;
 }
@@ -42,7 +46,7 @@
 	padding-left: 5px;
 }
 
-.list-of-lists .list-tasks.completed{
+.completed{
 	color:#ddd;
 	text-decoration: line-through;
 }

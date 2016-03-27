@@ -15,6 +15,7 @@
   <ion-content>
     <ion-list can-swipe="tasksCanSwipe">
       <ion-item 
+        ng-class="{completed: task.isCompleted}"
         ng-repeat="task in activeList.tasks" 
         ng-click="selectFolder($index)" 
         class="item item-icon-right">
