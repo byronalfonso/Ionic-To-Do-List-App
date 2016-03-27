@@ -13,9 +13,10 @@
 
     <ion-content>    
       <div class="button-bar">
-        <a href="#/app/welcome" menu-close class="button"><button class="button icon ion-home"></button></a>
-        <!-- <a class="button">Second</a> -->
+        <a href="#/app/welcome" menu-close class="button"><button class="button ion-home"> Home</button></a>
+        <a href="#/app/guide" menu-close class="button"><button class="button ion-help-circled"> Guide</button></a>
       </div>      
+
       <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="foldersCanSwipe">
         <ion-item ng-repeat="folder in folders" class="item item-icon-right" href="#/app/lists/{{$index}}" menu-close>
                    
@@ -27,40 +28,13 @@
           </ion-delete-button>
 
         </ion-item>
-
       </ion-list>
-
-      <!-- <div class="item-icon-right home-link" menu-close href="#/app/welcome" ng-click="unsetActiveFolder()">
-        <button class="button button-full button-positive" style="margin:0">
-          Go back to home page
-        </button>
-        <i class="icon ion-home"></i>
-      </div> -->
 
     </ion-content>
   </ion-side-menu>
 
   <!-- SIDE MENU CONTENT-->
   <ion-side-menu-content>
-  
-    
-    <!-- <ion-nav-bar class="bar-stable">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
-
-      <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-        </button>
-      </ion-nav-buttons>
-
-      <ion-nav-buttons side="right">
-        <button class="button button-icon ion-compose" ng-show="listViewActive" ng-click="newList()">
-        </button>
-      </ion-nav-buttons>
-
-    </ion-nav-bar> --> 
-  
-
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 

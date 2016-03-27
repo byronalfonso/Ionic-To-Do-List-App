@@ -181,3 +181,14 @@ input:-ms-input-placeholder {
 	border-radius: 0;
 	border:2px solid #fff;
 }
+
+/* Guide Page */
+
+.ans{
+	background: #F8BBD0;
+    color: #222;
+    font-weight: 500;
+    font-size: 13px;
+    padding: 5px;
+    margin-bottom: 10px;
+}

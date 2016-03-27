@@ -43,6 +43,15 @@ angular.module('todoApp', ['ionic', 'todoApp.controllers', 'todoApp.services'])
     }
   })
 
+  .state('app.guide', {
+    url: '/guide',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/guide.html'
+      }
+    }
+  })
+
   .state('app.lists', {
     url: '/lists/:folderId',
     views: {
