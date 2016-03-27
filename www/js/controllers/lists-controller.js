@@ -114,5 +114,9 @@ angular.module('todoApp.list-controller', [])
     newList.tasks.splice(index, 1);
   }
 
+  $scope.toggleSidemenu = function(){
+    $ionicSideMenuDelegate.$getByHandle('main-sidemenu').toggleLeft();
+  }
+
 
 })

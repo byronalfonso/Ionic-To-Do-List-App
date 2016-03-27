@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="false" class="main-sidebar">
+<ion-side-menus enable-menu-with-back-views="false" class="main-sidebar" delegate-handle="main-sidemenu">
   
   <!-- SIDE MENU -->
 
@@ -17,7 +17,7 @@
         <!-- <a class="button">Second</a> -->
       </div>      
       <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="foldersCanSwipe">
-        <ion-item ng-repeat="folder in folders" class="item item-icon-right" menu-close href="#/app/lists/{{$index}}">
+        <ion-item ng-repeat="folder in folders" class="item item-icon-right" href="#/app/lists/{{$index}}" menu-close>
                    
           {{folder.title}}
           <i class="icon ion-edit edit-folder" ng-click="editFolder($event, $index)"></i>

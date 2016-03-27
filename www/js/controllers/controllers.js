@@ -37,12 +37,12 @@ angular.module('todoApp.controllers', ['todoApp.list-controller', 'todoApp.task-
     $scope.editFolderModal = modal;
   });
 
-  $scope.openEditFolderModal = function() {
+  $scope.openEditFolderModal = function() {    
     $scope.editFolderModal.show();
   };
 
   $scope.closeEditFolderModal = function() {
-    $scope.editFolderModal.hide();
+    $scope.editFolderModal.hide();    
   };
 
   //Cleanup the modal when we're done with it!
@@ -77,13 +77,11 @@ angular.module('todoApp.controllers', ['todoApp.list-controller', 'todoApp.task-
     FolderSrvc.save($scope.folders);
     $scope.closeAddFolderModal();
   }  
-
-  // $scope.selectFolder = function(index){
-  //   alert(index);
-  //   // $scope.activeFolder = $scope.folders[index];
-  //   // $ionicSideMenuDelegate.toggleLeft(false);
-  //   FolderSrvc.setLastActiveFolder(index);
-  //   $scope.listViewActive = true;
+  
+  // $scope.closeSideMenu = function(index){   
+  //   if ($ionicSideMenuDelegate.isOpen()) {
+  //     $ionicSideMenuDelegate.$getByHandle('main-sidemenu').toggleLeft();
+  //   }    
   // }
 
   $scope.deleteFolder = function(index){
