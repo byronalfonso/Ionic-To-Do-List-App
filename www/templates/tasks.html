@@ -17,7 +17,7 @@
       <ion-item 
         ng-class="{completed: task.isCompleted}"
         ng-repeat="task in activeList.tasks" 
-        ng-click="selectFolder($index)" 
+        ng-click="toggleCompleteTask($index)" 
         class="item item-icon-right">
 
       {{task.title}}

@@ -112,4 +112,10 @@ angular.module('todoApp.task-controller', [])
     FolderSrvc.save($scope.folders);
   }
 
+  $scope.toggleCompleteTask = function(index){
+    var task = $scope.activeList.tasks[index];
+    task.isCompleted = task.isCompleted ? false : true;
+    FolderSrvc.save($scope.folders);
+  }
+
 })
