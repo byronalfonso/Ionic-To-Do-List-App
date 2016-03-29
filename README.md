@@ -22,6 +22,9 @@ CRUD - Create, Read, Update, Delete
 3. CRUD of tasks.
 4. Setting of tasks to complete.
 5. Persists data on the phone. (using localstorage)
+6. User Registration
+7. User Login
+8. User Ownership of folders
 
 ##Usage:
 1. Open the sidemenu and add a folder 
