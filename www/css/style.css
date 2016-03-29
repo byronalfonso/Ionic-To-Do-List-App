@@ -55,6 +55,41 @@ input:-ms-input-placeholder {
 	border-radius: 0;
 }
 
+.flex-container{
+	display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;    
+}
+
+.flex-center{
+	-webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;    
+}
+
+.flex-item{
+	-webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;   
+}
 
 /* Left Sidebar */
 
@@ -191,4 +226,31 @@ input:-ms-input-placeholder {
     font-size: 13px;
     padding: 5px;
     margin-bottom: 10px;
+}
+
+/* Login Page */
+.login-page .login-content{
+	margin-top: -150px;
+}
+
+.login-content .app-slogan{
+	text-align: center;
+	margin-bottom: 80px;
+}
+
+.login-content .app-logo img{
+	width:100%;
+	height: auto;
+}
+
+.login-page .form-box{	
+	min-width: 250px;	
+}
+
+.login-page .after-form-link{
+	text-align: center;
+}
+
+.popup{
+	background-color:#333 !important;
 }

@@ -1,0 +1,30 @@
+<ion-view class="welcome-page">
+
+	<ion-header-bar class="bar-dark">
+		<h1 class="title">Sign Up</h1>
+	</ion-header-bar>
+
+	<ion-content class="flex-container flex-center login-content">		
+		<div class="app-slogan">
+			<h2>To Do App</h2>
+			<p>Create folders &middot; Create Lists &middot; Create Tasks </p>
+		</div>
+		<div class="flex-item form-box">
+			<form ng-submit="register(user)">
+				<div class="list">
+					<ion-input class="item item-input">            
+						<input type="text" placeholder="Username" ng-model="user.uname">
+					</ion-input>
+					<ion-input class="item item-input">            
+						<input type="password" placeholder="Password" ng-model="user.pass">
+					</ion-input>
+				</div>
+
+				<div class="padding">
+					<button type="submit" class="button button-block button-positive app-btn">Register</button>
+					<p class="after-form-link">Already have an account? Click <a href="#/login">here</a></p>
+				</div>
+			</form>
+		</div>
+	</ion-content>
+</ion-view>

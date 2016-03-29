@@ -7,7 +7,8 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('todoApp', ['ionic', 'todoApp.controllers', 'todoApp.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $state, UserSrvc) {
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -21,18 +22,45 @@ angular.module('todoApp', ['ionic', 'todoApp.controllers', 'todoApp.services'])
       StatusBar.styleDefault();
     }
   });
+
+  /*
+    If Last Active user has logged out the last time or no one has has logged in yet, then restrict access to other pages
+  */
+  $rootScope.$on('$stateChangeStart', function (event, next, nextParams, fromState) {
+    if (UserSrvc.getLastActiveUser().length<=0) {
+       if (next.name !== 'login' && next.name !== 'signup') {
+         event.preventDefault();   
+         $state.go('login');
+       }
+     }
+  });
+
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-    .state('app', {
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl',
+    cache: false
+  })
+
+  .state('signup', {
+    url: '/signup',
+    templateUrl: 'templates/signup.html',
+    controller: 'SignupCtrl',
+    cache: false
+  })
+
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    controller: 'AppCtrl',
+    cache: false
   })
-
 
   .state('app.welcome', {
     url: '/welcome',
@@ -40,8 +68,9 @@ angular.module('todoApp', ['ionic', 'todoApp.controllers', 'todoApp.services'])
       'menuContent': {
         templateUrl: 'templates/welcome.html'
       }
-    }
-  })
+    },
+    cache: false
+  })  
 
   .state('app.guide', {
     url: '/guide',
@@ -49,7 +78,7 @@ angular.module('todoApp', ['ionic', 'todoApp.controllers', 'todoApp.services'])
       'menuContent': {
         templateUrl: 'templates/guide.html'
       }
-    }
+    },
   })
 
   .state('app.lists', {
@@ -75,5 +104,6 @@ angular.module('todoApp', ['ionic', 'todoApp.controllers', 'todoApp.services'])
   })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/welcome');
+  // $urlRouterProvider.otherwise('/app/welcome');
+  $urlRouterProvider.otherwise('/login');
 });

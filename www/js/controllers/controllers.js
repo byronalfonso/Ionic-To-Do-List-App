@@ -1,9 +1,8 @@
 'use strict';
 
-angular.module('todoApp.controllers', ['todoApp.list-controller', 'todoApp.task-controller'])
+angular.module('todoApp.controllers', ['todoApp.signup-controller', 'todoApp.login-controller', 'todoApp.list-controller', 'todoApp.task-controller'])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicHistory, $state, $ionicSideMenuDelegate, FolderSrvc) {
-
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicHistory, $state, $ionicSideMenuDelegate, FolderSrvc, UserSrvc) {
 
   /*************** #Modal Stuff ***************/
 
@@ -107,5 +106,9 @@ angular.module('todoApp.controllers', ['todoApp.list-controller', 'todoApp.task-
     $scope.closeEditFolderModal();
   }
 
+  $scope.logout = function(){
+    UserSrvc.logout();
+    $state.go('login');
+  }
   /* End Of Folder Functions */
 })

@@ -13,8 +13,9 @@
 
     <ion-content>    
       <div class="button-bar">
-        <a href="#/app/welcome" menu-close class="button"><button class="button ion-home"> Home</button></a>
-        <a href="#/app/guide" menu-close class="button"><button class="button ion-help-circled"> Guide</button></a>
+        <a href="#/app/welcome" menu-close class="button"><button class="button icon ion-home"></button></a>
+        <a href="#/app/guide" menu-close class="button"><button class="button icon ion-ios-paper-outline"></button></a>
+        <button class="button icon ion-log-out" ng-click="logout()"></button>
       </div>      
 
       <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="foldersCanSwipe">

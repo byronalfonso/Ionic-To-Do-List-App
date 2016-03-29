@@ -1,27 +1,39 @@
 'use strict';
 
-angular.module('todoApp.services', ['todoApp.helper-services'])
+angular.module('todoApp.services', ['todoApp.user-services', 'todoApp.helper-services'])
 
-.factory('FolderSrvc', function($q) {
+.factory('FolderSrvc', function($q, UserSrvc) {
 
 	var FOLDER_KEY = 'folders'
 	var LAST_ACTIVE_FOLDER_KEY = 'active_folder'
 	var LAST_ACTIVE_LIST_KEY = 'active_list'
 	
 	var getAll = function(){		
-		var folders = window.localStorage[FOLDER_KEY];
+		// Get all users and use the active user's index that's been saved in local storage.
+		var users = UserSrvc.getUsers();
+		var activeUser = users[UserSrvc.getLastActiveUser()];
 		
-		if(folders) {
-			return angular.fromJson(folders);
+		// Check whether there's an existing folders prop in the active user; if tru then return them else return new and empty array.		
+		if("folders" in activeUser) {
+			return angular.fromJson(activeUser.folders);
+		}else{
+			activeUser['folders'] = [];
+			return activeUser.folders;			
 		}
-
-		return []; 
 	}
 
+	// Save and update the folders to the users
 	var save = function(folders){
-		window.localStorage[FOLDER_KEY] = angular.toJson(folders);
+		var users = UserSrvc.getUsers();
+		var activeUser = users[UserSrvc.getLastActiveUser()];
+		activeUser.folders = folders;
+		UserSrvc.save(users);
 	}
 
+
+	/*
+		Following two functions are currently unused but not removed for possible future use
+	*/
 	var setLastActiveFolder = function(index){
 		window.localStorage[LAST_ACTIVE_FOLDER_KEY] = index;
 	}
@@ -36,10 +48,16 @@ angular.module('todoApp.services', ['todoApp.helper-services'])
 		return [];		
 	}
 
+	/*
+		Set/save the last active list for tracking on local storage
+	*/
 	var setLastActiveList = function(index){
 		window.localStorage[LAST_ACTIVE_LIST_KEY] = index;
 	}
 
+	/*
+		return the the index of the last active list from local storage.
+	*/
 	var getLastActiveList = function(index){
 		var activeList = window.localStorage[LAST_ACTIVE_LIST_KEY];
 		
@@ -59,30 +77,3 @@ angular.module('todoApp.services', ['todoApp.helper-services'])
 		getLastActiveList: getLastActiveList,
 	};
 });
-
-
-// return {
-//     all: function() {
-//       var projectString = window.localStorage['projects'];
-//       if(projectString) {
-//         return angular.fromJson(projectString);
-//       }
-//       return [];
-//     },
-//     save: function(projects) {
-//       window.localStorage['projects'] = angular.toJson(projects);
-//     },
-//     newProject: function(projectTitle) {
-//       // Add a new project
-//       return {
-//         title: projectTitle,
-//         tasks: []
-//       };
-//     },
-//     getLastActiveIndex: function() {
-//       return parseInt(window.localStorage['lastActiveProject']) || 0;
-//     },
-//     setLastActiveIndex: function(index) {
-//       window.localStorage['lastActiveProject'] = index;
-//     }
-//   }

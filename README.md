@@ -37,7 +37,7 @@ CRUD - Create, Read, Update, Delete
 .-http://screencast.com/t/Mwb9NYz4
 
 ##App Icon and Splash Screen
-Along with the code, I have create a simple app icon and splash screen image(stored on the /resources folder). To use them, simply add a platform e.g. 'cordova platform add and' then run 'ionic resources'. Ionic will then automatically generate icons and splashscreens for all existing platforms.
+Along with the code, I have create a simple app icon and splash screen image(stored on the /resources folder). To use them, simply add a platform e.g. 'cordova platform add ios' and then run 'ionic resources'. Ionic will then automatically generate icons and splashscreens for all existing platforms.
 
 ##Testing:
 Due to limited resources, the app was only tested using two android devices running on version 4.2. The results of the testing was quite good. The app works as is supposed to work (Please report any bug if you've seen any).
